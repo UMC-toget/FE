@@ -1,4 +1,6 @@
-# React + TypeScript + Vite
+## ✉️ ToGet - 선물 펀딩 서비스
+UMC 10기 투켓에서 설계한 선물 펀딩 서비스입니다.
+<br />
 
 ## 💁‍♂️ 프로젝트 팀원
 <table>

@@ -11,7 +11,7 @@ UMC 10기 투켓에서 설계한 선물 펀딩 서비스입니다.
       </a>
     </td>
     <td width="300px" align="center">
-      <a href="https://github.com/gyesswhat">
+      <a href="https://github.com/">
         <img height="150px" width="150px" src="https://avatars.githubusercontent.com/" />
       </a>
     </td>
@@ -33,7 +33,7 @@ UMC 10기 투켓에서 설계한 선물 펀딩 서비스입니다.
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/gyesswhat">
+      <a href="https://github.com/">
         <b>우준영</b>
       </a>
     </td>

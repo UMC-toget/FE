@@ -3,6 +3,7 @@ import SplashPage from './pages/splash/SplashPage'
 import LoginPage from './pages/login/LoginPage'
 import ProfileSetupPage from './pages/signup/ProfileSetupPage'
 import HomePage from './pages/home/HomePage'
+import MyPage from './pages/my/MyPage'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup/profile" element={<ProfileSetupPage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/my" element={<MyPage />} />
     </Routes>
   )
 }

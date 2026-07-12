@@ -37,14 +37,14 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <div className="relative mx-auto mt-[87px] w-[207px]">
+      <div className="relative mx-auto mt-[130px] w-[207px]">
         <img src={loginCharacter} alt="투겟 캐릭터" className="h-[189px] w-full" />
         <img src={heart} alt="" className="absolute -left-11 -top-11 size-12 -rotate-[23deg]" />
         <img src={heart} alt="" className="absolute -left-9 -top-16 size-8 rotate-[6deg]" />
         <img src={heart} alt="" className="absolute -right-8 top-[100px] size-9 rotate-[34deg]" />
       </div>
 
-      <div className="mt-[42px] flex flex-col gap-3">
+      <div className="flex flex-col gap-3">
         <button
           type="button"
           onClick={() => setTermsOpen(true)}

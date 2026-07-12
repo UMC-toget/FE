@@ -1,6 +1,6 @@
 import PlusIcon from '../../components/icons/PlusIcon'
 import heroCat from '../../assets/hero-cat.svg'
-import bannerCat from '../../assets/banner-cat.png'
+import bannerCat from '../../assets/banner-cat.svg'
 
 // TODO: 가입 API 연동 후 실제 사용자 닉네임으로 교체
 const MOCK_NICKNAME = '희주'

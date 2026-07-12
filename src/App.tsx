@@ -1,9 +1,12 @@
-import { Routes } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import SplashPage from './pages/splash/SplashPage'
+import LoginPage from './pages/login/LoginPage'
 
 function App() {
   return (
     <Routes>
-      {/* 페이지 구현 후 라우트를 추가해주세요. 예: <Route path="/login" element={<LoginPage />} /> */}
+      <Route path="/" element={<SplashPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   )
 }

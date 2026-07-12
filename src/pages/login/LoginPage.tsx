@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CloseIcon from '../../components/icons/CloseIcon'
-import TermsBottomSheet from './TermsBottomSheet'
 import togetLogo from '../../assets/toget-logo.svg'
 import loginCharacter from '../../assets/login-character.svg'
 import heartBig from '../../assets/heart-big.svg'
@@ -12,12 +10,11 @@ import googleIcon from '../../assets/icon-google.png'
 
 /** 카카오/구글 소셜 로그인 페이지 */
 export default function LoginPage() {
-  const [termsOpen, setTermsOpen] = useState(false)
   const navigate = useNavigate()
 
-  const handleConfirm = () => {
-    setTermsOpen(false)
-    // TODO: 닉네임 등록 페이지 구현 후 navigate('/signup/nickname')으로 연결
+  // TODO: 소셜 로그인 API 연동 후 실제 OAuth 플로우로 교체
+  const handleSocialLogin = () => {
+    navigate('/signup/profile')
   }
 
   return (
@@ -49,7 +46,7 @@ export default function LoginPage() {
       <div className="relative z-10 flex flex-col gap-3">
         <button
           type="button"
-          onClick={() => setTermsOpen(true)}
+          onClick={handleSocialLogin}
           className="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl bg-[#fee500]"
         >
           <img src={kakaoIcon} alt="" className="size-6 object-contain p-1" />
@@ -57,7 +54,7 @@ export default function LoginPage() {
         </button>
         <button
           type="button"
-          onClick={() => setTermsOpen(true)}
+          onClick={handleSocialLogin}
           className="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-gray-600 bg-white"
         >
           <img src={googleIcon} alt="" className="size-6 object-contain p-1" />
@@ -70,8 +67,6 @@ export default function LoginPage() {
         <br />
         서비스 이용약관과 개인정보처리방침에 동의하게 됩니다.
       </p>
-
-      <TermsBottomSheet open={termsOpen} onClose={() => setTermsOpen(false)} onConfirm={handleConfirm} />
     </div>
   )
 }

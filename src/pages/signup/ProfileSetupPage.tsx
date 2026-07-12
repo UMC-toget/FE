@@ -3,14 +3,17 @@ import Header from '../../components/common/Header'
 import TextField from '../../components/common/TextField'
 import Button from '../../components/common/Button'
 import ProfileAvatar from './ProfileAvatar'
+import TermsBottomSheet from './TermsBottomSheet'
 
 const NICKNAME_MAX_LENGTH = 6
 
 /** 회원가입 마지막 단계: 프로필(닉네임/사진) 설정 페이지 */
 export default function ProfileSetupPage() {
   const [nickname, setNickname] = useState('')
+  const [termsOpen, setTermsOpen] = useState(false)
 
-  const handleSubmit = () => {
+  const handleConfirm = () => {
+    setTermsOpen(false)
     // TODO: 가입 API 연동 및 홈 페이지 구현 후 navigate('/home')으로 연결
   }
 
@@ -36,10 +39,12 @@ export default function ProfileSetupPage() {
           placeholder="닉네임을 입력해 주세요"
           onChange={(e) => setNickname(e.target.value)}
         />
-        <Button disabled={nickname.length === 0} onClick={handleSubmit}>
+        <Button disabled={nickname.length === 0} onClick={() => setTermsOpen(true)}>
           가입
         </Button>
       </div>
+
+      <TermsBottomSheet open={termsOpen} onClose={() => setTermsOpen(false)} onConfirm={handleConfirm} />
     </div>
   )
 }

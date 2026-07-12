@@ -5,6 +5,7 @@ import TextField from '../../components/common/TextField'
 import Button from '../../components/common/Button'
 import ProfileAvatar from './ProfileAvatar'
 import TermsBottomSheet from './TermsBottomSheet'
+import { useAuth } from '../../hooks/useAuth'
 
 const NICKNAME_MAX_LENGTH = 6
 
@@ -13,9 +14,11 @@ export default function ProfileSetupPage() {
   const [nickname, setNickname] = useState('')
   const [termsOpen, setTermsOpen] = useState(false)
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const handleConfirm = () => {
     // TODO: 가입 API 연동
+    login()
     setTermsOpen(false)
     navigate('/home')
   }

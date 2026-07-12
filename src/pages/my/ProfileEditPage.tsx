@@ -17,6 +17,7 @@ export default function ProfileEditPage() {
   const [name, setName] = useState(MOCK_USER.name)
   const [nickname, setNickname] = useState('')
   const [logoutModalOpen, setLogoutModalOpen] = useState(false)
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const { logout } = useAuth()
   const navigate = useNavigate()
 
@@ -30,6 +31,12 @@ export default function ProfileEditPage() {
     // TODO: 로그아웃 API 연동
     logout()
     navigate('/my', { state: { toast: '로그아웃이 완료 되었습니다' } })
+  }
+
+  const handleDeleteAccount = () => {
+    // TODO: 계정 삭제 API 연동
+    logout()
+    navigate('/my', { state: { toast: '계정 삭제가 완료 되었습니다' } })
   }
 
   return (
@@ -58,8 +65,7 @@ export default function ProfileEditPage() {
 
       <div className="mt-7 flex flex-col gap-3 px-[18px]">
         <MenuRow label="로그아웃" chevron={false} onClick={() => setLogoutModalOpen(true)} />
-        {/* TODO: 계정 삭제 플로우 구현 */}
-        <MenuRow label="계정 삭제" chevron={false} />
+        <MenuRow label="계정 삭제" chevron={false} onClick={() => setDeleteModalOpen(true)} />
       </div>
 
       <ConfirmModal
@@ -69,6 +75,15 @@ export default function ProfileEditPage() {
         confirmText="로그아웃"
         onCancel={() => setLogoutModalOpen(false)}
         onConfirm={handleLogout}
+      />
+      <ConfirmModal
+        open={deleteModalOpen}
+        title="계정을 삭제할까요?"
+        description={'삭제하면 내 선물 페이지와\n참여 내역을 더 이상 확인할 수 없어요.'}
+        agreeText="네, 동의합니다"
+        confirmText="삭제하기"
+        onCancel={() => setDeleteModalOpen(false)}
+        onConfirm={handleDeleteAccount}
       />
 
       <BottomNav active="my" />

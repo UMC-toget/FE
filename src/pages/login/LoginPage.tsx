@@ -17,7 +17,7 @@ export default function LoginPage() {
 
   const handleConfirm = () => {
     setTermsOpen(false)
-    // TODO: 닉네임 등록 페이지 구현 후 navigate('/signup/nickname')으로 연결
+    navigate('/signup/profile')
   }
 
   return (

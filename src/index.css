@@ -30,6 +30,10 @@
 
   /* 타이포그래피 (피그마 텍스트 스타일명 기준)
      사용 예: <p class="text-h3-sb">제목</p> */
+  --text-h1-sb: 24px;
+  --text-h1-sb--font-weight: 600;
+  --text-h1-sb--line-height: 1;
+
   --text-h3-sb: 18px;
   --text-h3-sb--font-weight: 600;
   --text-h3-sb--line-height: 1;

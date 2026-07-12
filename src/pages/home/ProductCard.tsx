@@ -17,7 +17,7 @@ export default function ProductCard({ product }: { product: Product }) {
           aria-pressed={wished}
           onClick={() => setWished((prev) => !prev)}
           className={`absolute right-3 top-3 flex size-6 items-center justify-center rounded-full ${
-            wished ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+            wished ? 'bg-gray-900 text-white' : 'bg-white text-gray-200'
           }`}
         >
           <GiftIcon className="size-4" />

@@ -46,7 +46,7 @@ export default function LoginPage() {
         <img src={heartRight} alt="" className="absolute -right-[52px] top-[101px] size-12 rotate-[34deg]" />
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="relative z-10 flex flex-col gap-3">
         <button
           type="button"
           onClick={() => setTermsOpen(true)}

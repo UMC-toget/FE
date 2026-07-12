@@ -15,8 +15,16 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
  * @example
  * <TextField label="닉네임" value={nickname} maxLength={6} onChange={(e) => setNickname(e.target.value)} />
  */
-export default function TextField({ label, value, maxLength, className = '', ...props }: TextFieldProps) {
+export default function TextField({ label, value, maxLength, onChange, className = '', ...props }: TextFieldProps) {
   const inputId = useId()
+
+  // 한글 조합(IME) 중에는 브라우저가 maxLength를 강제하지 않아 초과 입력될 수 있어 직접 잘라냅니다
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (maxLength !== undefined && e.target.value.length > maxLength) {
+      e.target.value = e.target.value.slice(0, maxLength)
+    }
+    onChange?.(e)
+  }
 
   return (
     <div className={`flex w-full flex-col gap-2 ${className}`}>
@@ -30,6 +38,7 @@ export default function TextField({ label, value, maxLength, className = '', ...
           id={inputId}
           value={value}
           maxLength={maxLength}
+          onChange={handleChange}
           className="min-w-0 flex-1 bg-transparent text-b1-m text-black outline-none placeholder:text-gray-400"
           {...props}
         />

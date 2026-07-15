@@ -1,11 +1,7 @@
-import './App.css'
+import FundingCreatePage from './pages/FundingCreatePage';
 
 function App() {
-
-  return (
-    <>
-    </>
-  )
+  return <FundingCreatePage />;
 }
 
-export default App
+export default App;

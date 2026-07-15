@@ -3,8 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import BottomSheet from '../../components/common/BottomSheet'
 import ConfirmModal from '../../components/common/ConfirmModal'
 import bannerCat from '../../assets/banner-cat.svg'
+import togetherCat from '../../assets/together-cat.svg'
 import { GIFT_CREATE_CARDS, MOCK_HAS_DRAFT } from './giftTypes'
 import type { GiftPageType } from './giftTypes'
+
+const CARD_ICONS: Record<GiftPageType, string> = {
+  my: bannerCat,
+  together: togetherCat,
+}
 
 interface GiftCreateSheetProps {
   open: boolean
@@ -61,8 +67,8 @@ export default function GiftCreateSheet({ open, onClose }: GiftCreateSheetProps)
                 onClick={() => handleSelectCard(card.type)}
                 className="flex w-full items-start gap-3 rounded-xl border border-gray-100 bg-white px-3.5 py-3 text-left"
               >
-                <span className="flex size-[58px] shrink-0 items-center justify-center rounded-[5.8px] bg-background">
-                  <img src={bannerCat} alt="" className="size-[52px]" />
+                <span className="flex size-[58px] shrink-0 items-center justify-center overflow-hidden rounded-[5.8px] bg-background">
+                  <img src={CARD_ICONS[card.type]} alt="" className="size-[52px] object-cover" />
                 </span>
                 <span className="flex flex-col gap-1.5">
                   <span className="text-b2-m text-black">{card.title}</span>

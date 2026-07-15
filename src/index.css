@@ -34,6 +34,10 @@
   --text-h1-sb--font-weight: 600;
   --text-h1-sb--line-height: 1;
 
+  --text-h2-sb: 20px;
+  --text-h2-sb--font-weight: 600;
+  --text-h2-sb--line-height: 1.45;
+
   --text-h3-sb: 18px;
   --text-h3-sb--font-weight: 600;
   --text-h3-sb--line-height: 1;

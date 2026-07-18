@@ -46,7 +46,7 @@ export default function InvitationPage() {
           {/* TODO: E02(#27) 머지 전까지는 /funding/:id 라우트가 없어 빈 화면으로 이동함 — E02 작업에서 연결 */}
           <Button onClick={() => navigate(`/funding/${id}`)}>축하하러 가기</Button>
           <p className="text-caption1-r text-gray-500">
-            축하 메시지를 남기거나, 선물에 마음을 보탤 수 있어요
+            축하 메세지를 남기거나, 선물에 마음을 보탤 수 있어요
           </p>
         </div>
 

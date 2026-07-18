@@ -23,13 +23,15 @@ export default function DepositStep({ hostName, letter, letterColor, amount }: D
   const [copied, setCopied] = useState(false)
 
   const copyAccountNumber = async () => {
+    // 은행 앱 계좌 입력란에 바로 붙여넣을 수 있게 하이픈 없이 숫자만 복사
+    const digits = MOCK_ACCOUNT.accountNumber.replace(/-/g, '')
     let ok = true
     try {
-      await navigator.clipboard.writeText(MOCK_ACCOUNT.accountNumber)
+      await navigator.clipboard.writeText(digits)
     } catch {
       // 카톡 인앱 브라우저 등 clipboard API 미지원 환경 fallback
       const textarea = document.createElement('textarea')
-      textarea.value = MOCK_ACCOUNT.accountNumber
+      textarea.value = digits
       document.body.appendChild(textarea)
       textarea.select()
       ok = document.execCommand('copy')

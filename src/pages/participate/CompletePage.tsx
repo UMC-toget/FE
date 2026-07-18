@@ -15,7 +15,7 @@ export default function CompletePage() {
 
   return (
     // antialiased 없으면 폰트가 피그마보다 굵게 렌더링됨
-    <div className="relative mx-auto min-h-dvh w-full max-w-[402px] overflow-hidden bg-white antialiased">
+    <div className="relative mx-auto flex min-h-dvh w-full max-w-[402px] flex-col overflow-hidden bg-white antialiased">
       <div className="pointer-events-none absolute left-[58px] top-[292px] size-[286px] rounded-full bg-pink-500 opacity-45 blur-[100px]" />
 
       <img
@@ -67,7 +67,8 @@ export default function CompletePage() {
         <img src={completeCat} alt="축하 완료" className="mt-[59px] w-[268px]" />
       </div>
 
-      <div className="absolute left-[18px] top-[659px] flex w-[366px] flex-col gap-[5px]">
+      {/* 874px 화면에선 피그마 위치(top 659)와 동일, 작은 화면에선 콘텐츠 아래 최소 24px 간격 유지 */}
+      <div className="relative mt-auto flex w-full flex-col gap-[5px] px-[18px] pb-[106px] pt-6">
         <button
           type="button"
           onClick={() => navigate(`/funding/${id}`)}

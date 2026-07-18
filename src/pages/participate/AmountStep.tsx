@@ -16,7 +16,8 @@ export default function AmountStep({ funding, amount, onAmountChange }: AmountSt
   const formatted = amount != null && amount > 0 ? amount.toLocaleString() : ''
 
   const handleInput = (value: string) => {
-    const digits = value.replace(/[^0-9]/g, '')
+    // 앞자리 0 제거 (D 섹션 가격 입력의 '첫 숫자 1~9' 규칙과 동일) — '0'만 입력해도 미선택 유지
+    const digits = value.replace(/[^0-9]/g, '').replace(/^0+/, '')
     onAmountChange(digits === '' ? null : Number(digits))
   }
 

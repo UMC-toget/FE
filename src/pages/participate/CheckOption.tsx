@@ -7,7 +7,7 @@ interface CheckOptionProps {
   onChange: (checked: boolean) => void
 }
 
-/** E03 옵션 체크박스 (피그마 '익명 설정'/'비공개설정' 컴포넌트 기준: 16px 사각 + 라벨) */
+/** E03 옵션 체크박스 (익명 설정, 비공개 설정) */
 export default function CheckOption({ label, checked, onChange }: CheckOptionProps) {
   return (
     <button type="button" onClick={() => onChange(!checked)} className="flex items-center gap-2">

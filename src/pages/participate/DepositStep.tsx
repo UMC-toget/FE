@@ -17,10 +17,7 @@ interface DepositStepProps {
   amount: number
 }
 
-/**
- * E03 4단계: 마음 전하기 (피그마 #1714:68700 기준)
- * 작성 내용 요약(편지지 접힘 + 참여 금액) + 개설자 계좌 안내(은행/계좌번호/예금주) + 계좌번호 복사.
- */
+/** E03 4단계: 마음 전하기 (피그마 #1714:68700) */
 export default function DepositStep({ hostName, letter, letterColor, amount }: DepositStepProps) {
   const [letterOpen, setLetterOpen] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -47,7 +44,6 @@ export default function DepositStep({ hostName, letter, letterColor, amount }: D
       <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <p className="text-b1-m leading-normal text-black">축하 메세지</p>
-        {/* 편지지 접힘 (피그마 '편지지 접힘' 컴포넌트) — 접힘 상태는 '희주에게···', 탭하면 내용 펼침 */}
         <button
           type="button"
           onClick={() => setLetterOpen((prev) => !prev)}
@@ -84,7 +80,6 @@ export default function DepositStep({ hostName, letter, letterColor, amount }: D
         <div className="flex flex-col gap-2">
           <p className="text-b1-m leading-normal text-black">입금계좌</p>
           <div className="flex flex-col gap-4">
-            {/* 라벨 좌측(gray-500) + 값 우측(gray-700), 행 사이 gray-200 실선 (피그마 실측) */}
             <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3">
               {[
                 ['은행', MOCK_ACCOUNT.bankName],
@@ -100,7 +95,6 @@ export default function DepositStep({ hostName, letter, letterColor, amount }: D
                 </div>
               ))}
             </div>
-            {/* 피그마 '계좌번호 복사' 컴포넌트: h50, radius 8, gray-700, B1_M */}
             <button
               type="button"
               onClick={copyAccountNumber}

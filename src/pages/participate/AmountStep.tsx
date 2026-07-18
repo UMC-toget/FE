@@ -9,10 +9,10 @@ interface AmountStepProps {
   onAmountChange: (amount: number | null) => void
 }
 
-/** E03 3단계: 참여 금액 선택 (피그마 #1714:68406, '금액입력' 컴포넌트셋 #1714:70542 기준) */
+/** E03 3단계: 참여 금액 선택 (피그마 #1714:68406) */
 export default function AmountStep({ funding, amount, onAmountChange }: AmountStepProps) {
   const recommended = getRecommendedAmounts(new Date(funding.anniversaryDate))
-  // 피그마 '직접입력 중' 상태 기준: 콤마 포맷 숫자만 표시 ('원' 미표시)
+  // 직접 입력 중에는 '원' 없이 숫자만 표시 (디자인 기준)
   const formatted = amount != null && amount > 0 ? amount.toLocaleString() : ''
 
   const handleInput = (value: string) => {
@@ -66,7 +66,7 @@ export default function AmountStep({ funding, amount, onAmountChange }: AmountSt
                 </button>
               ))}
             </div>
-            {/* TODO: 금액 없이 참여 시 4단계(계좌) 스킵 여부 미확정 (기획 확인) — 현재는 4단계에서 계좌 섹션만 숨김 */}
+            {/* TODO: 금액 없이 참여 시 4단계 스킵 여부 기획 확인 필요 — 현재는 4단계에서 계좌 섹션만 숨김 */}
             <button
               type="button"
               onClick={() => onAmountChange(0)}

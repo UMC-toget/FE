@@ -7,10 +7,7 @@ interface ProcessBarProps {
   currentStep: number
 }
 
-/**
- * E03 참여 프로세스 바 (피그마 '내 선물 참여 프로세스' 컴포넌트셋 #1057:4870 기준)
- * 완료: 검정 원 + 체크 / 진행 중: 검정 원 + 숫자 / 미완료: 회색 원 + 회색 숫자
- */
+/** E03 참여 프로세스 바 (피그마 #1057:4870) */
 export default function ProcessBar({ currentStep }: ProcessBarProps) {
   return (
     <div className="flex items-start">
@@ -21,7 +18,7 @@ export default function ProcessBar({ currentStep }: ProcessBarProps) {
         return (
           <div key={label} className="flex flex-1 flex-col items-center gap-1.5">
             <div className="flex w-full items-center">
-              {/* 왼쪽 반선: 이전 단계→현재까지 진행됐으면 검정 (피그마 '완료' 커넥터) */}
+              {/* 단계 사이 연결선은 각 원의 좌우 반선 2개로 나눠서 그림 */}
               <div
                 className={`h-[1.5px] flex-1 ${
                   index === 0 ? 'bg-transparent' : step <= currentStep ? 'bg-gray-900' : 'bg-gray-100'
@@ -40,7 +37,6 @@ export default function ProcessBar({ currentStep }: ProcessBarProps) {
                   </span>
                 )}
               </div>
-              {/* 오른쪽 반선: 다음 단계까지 진행됐으면 검정 */}
               <div
                 className={`h-[1.5px] flex-1 ${
                   index === STEP_LABELS.length - 1

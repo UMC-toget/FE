@@ -12,7 +12,7 @@ interface LetterStepProps {
   onPrivateChange: (isPrivate: boolean) => void
 }
 
-/** E03 2단계: 축하 메시지 작성 (피그마 #1714:68510 기준 — 편지지 색상 8종 + 편지 입력 + 비공개 설정) */
+/** E03 2단계: 축하 메세지 작성 (피그마 #1714:68510) */
 export default function LetterStep({
   hostName,
   letter,
@@ -29,7 +29,6 @@ export default function LetterStep({
       <div className="flex flex-col gap-4">
         <p className="text-b1-m leading-normal text-black">편지지 색상</p>
         <div className="flex items-center gap-3 overflow-x-auto pb-1">
-          {/* 피그마 실측: radius 4px, 미선택은 opacity 0.6, 화이트만 회색 테두리 */}
           {LETTER_COLORS.map((color) => (
             <button
               key={color.id}

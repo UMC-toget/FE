@@ -1,6 +1,6 @@
 import CheckIcon from '../../components/icons/CheckIcon'
 
-const STEP_LABELS = ['참여자 정보', '축하 메시지', '참여 금액 선택', '마음 전하기'] as const
+const STEP_LABELS = ['참여자 정보', '축하 메세지', '참여 금액 선택', '마음 전하기'] as const
 
 interface ProcessBarProps {
   /** 현재 진행 중인 단계 (1~4) */

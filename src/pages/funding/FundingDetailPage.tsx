@@ -91,6 +91,7 @@ export default function FundingDetailPage() {
         {funding.isOwner ? (
           <div className="pointer-events-auto flex gap-3">
             {/* TODO: 펀딩 마감 처리 정책(BE)·수정 흐름(D 섹션) 확정 후 연결 */}
+            {/* 14px SemiBold는 @theme에 대응 토큰이 없어 일반 유틸 사용 (B2_SB 토큰 추가는 디자이너 확인 필요) */}
             <button
               type="button"
               className="flex h-[52px] flex-1 items-center justify-center rounded-xl border border-gray-600 bg-white text-sm font-semibold text-black"

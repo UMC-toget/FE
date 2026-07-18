@@ -6,8 +6,7 @@ import heartRight from '../../assets/heart-right.svg'
 import heartSmall from '../../assets/heart-small.svg'
 
 /**
- * E04) 내 선물 참여: 축하 완료 (피그마 노드 1643-63087 기준)
- * 참여 완료 후 고마움 메시지 + 선물 페이지 보기 / 홈으로 가기 CTA.
+ * E04) 내 선물 참여: 축하 완료 (피그마 1643-63087)
  */
 export default function CompletePage() {
   const navigate = useNavigate()
@@ -15,9 +14,8 @@ export default function CompletePage() {
   const funding = useMockFunding()
 
   return (
-    // antialiased: 피그마와 동일한 글자 굵기 렌더링 (브라우저 기본 subpixel 방식은 더 굵게 보임)
+    // antialiased 없으면 폰트가 피그마보다 굵게 렌더링됨
     <div className="relative mx-auto min-h-dvh w-full max-w-[402px] overflow-hidden bg-white antialiased">
-      {/* 핑크 글로우 (피그마 Ellipse 8753: blur 100px, #FE71A5) */}
       <div
         className="pointer-events-none absolute rounded-full"
         style={{
@@ -31,7 +29,6 @@ export default function CompletePage() {
         }}
       />
 
-      {/* 플로팅 하트 (피그마 절대 좌표 기준) */}
       <img
         src={heartSmall}
         alt=""
@@ -68,9 +65,8 @@ export default function CompletePage() {
         style={{ width: '34.84px', left: '38px', top: '505px', transform: 'rotate(-34.26deg)' }}
       />
 
-      {/* 본문 (타이틀 top: 154px 기준) — relative로 글로우/하트보다 위 레이어에 배치 */}
+      {/* relative: 배경 글로우/하트 위에 올라오도록 */}
       <div className="relative flex flex-col items-center" style={{ paddingTop: '154px' }}>
-        {/* 타이틀 (24px SemiBold, line-height 35px) */}
         <h1
           className="text-center font-semibold text-black"
           style={{ fontSize: '24px', lineHeight: '35px' }}
@@ -80,7 +76,6 @@ export default function CompletePage() {
           <span className="text-pink-500">정말 고마워요!</span>
         </h1>
 
-        {/* 서브타이틀 (top: 247px → 타이틀 top 154 + 93 = 247) */}
         <p
           className="mt-[23px] w-[267px] text-center text-b2-m text-gray-600"
           style={{ lineHeight: '15px' }}
@@ -90,21 +85,13 @@ export default function CompletePage() {
           따뜻한 마음을 모아 전달할게요
         </p>
 
-        {/* 캐릭터 일러스트 (피그마 Group 2147225908, top: 336px → 247+30+59=336) */}
-        <img
-          src={completeCat}
-          alt="축하 완료"
-          className="mt-[59px]"
-          style={{ width: '268px' }}
-        />
+        <img src={completeCat} alt="축하 완료" className="mt-[59px]" style={{ width: '268px' }} />
       </div>
 
-      {/* 하단 CTA (피그마 top: 659px, left: 18px, gap: 5px) */}
       <div
         className="absolute flex flex-col"
         style={{ top: '659px', left: '18px', width: '366px', gap: '5px' }}
       >
-        {/* 선물 페이지 보기 (gray-900 배경, h3-sb, 52px, radius 12) */}
         <button
           type="button"
           onClick={() => navigate(`/funding/${id}`)}
@@ -112,7 +99,6 @@ export default function CompletePage() {
         >
           선물 페이지 보기
         </button>
-        {/* 홈으로 가기 (배경 없음, 18px Medium, gray #978F96) */}
         <button
           type="button"
           onClick={() => navigate('/home')}

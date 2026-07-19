@@ -202,6 +202,9 @@ export default function PhotoCropOverlay({ file, onCancel, onConfirm, onError }:
             style={{ boxShadow: '0 0 0 9999px rgba(0,0,0,0.6)' }}
           />
 
+          {/* 원형 가이드 테두리 (사각 테두리와 동일한 연분홍) */}
+          <div className="pointer-events-none absolute inset-0 rounded-full border border-[#ffe3ed]" />
+
           {/* 3x3 격자선 */}
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/3 top-0 h-full w-px bg-[#ffc6db] opacity-50" />

@@ -8,6 +8,7 @@ import ProfileEditPage from './pages/my/ProfileEditPage'
 import InvitationPage from './pages/invitation/InvitationPage'
 import FundingDetailPage from './pages/funding/FundingDetailPage'
 import MessagesPage from './pages/funding/MessagesPage'
+import ParticipatePage from './pages/participate/ParticipatePage'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/funding/:id/invitation" element={<InvitationPage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />} />
       <Route path="/funding/:id/messages" element={<MessagesPage />} />
+      <Route path="/funding/:id/participate" element={<ParticipatePage />} />
     </Routes>
   )
 }

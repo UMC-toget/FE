@@ -66,3 +66,29 @@
   --text-caption2-r--font-weight: 400;
   --text-caption2-r--line-height: 1;
 }
+
+/* 글자수 제한 초과 등 입력 거부 피드백용 좌우 흔들림.
+   진폭은 --shake-amp로 요소마다 다르게 줄 수 있고, 기본값은 입력창 기준(4px)입니다. */
+@keyframes shake-x {
+  10%,
+  90% {
+    transform: translateX(calc(var(--shake-amp, 4px) * -0.25));
+  }
+  20%,
+  80% {
+    transform: translateX(calc(var(--shake-amp, 4px) * 0.5));
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(calc(var(--shake-amp, 4px) * -1));
+  }
+  40%,
+  60% {
+    transform: translateX(var(--shake-amp, 4px));
+  }
+}
+
+.animate-shake {
+  animation: shake-x 0.4s ease-in-out;
+}

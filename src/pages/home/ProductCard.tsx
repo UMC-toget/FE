@@ -19,7 +19,7 @@ export default function ProductCard({ product, rank }: ProductCardProps) {
         <img src={product.image} alt={product.name} className="max-h-[75%] max-w-[80%] object-contain" />
         <span className="absolute left-3 top-3 flex size-6 items-center justify-center rounded-full bg-gray-700 text-caption1-m text-white">
           {/* 폰트 렌더링 특성상 숫자가 살짝 치우쳐 보여 보정합니다 (모바일 기준) */}
-          <span className="translate-x-[-0.5px] translate-y-[-0.5px]">{rank}</span>
+          <span className="translate-y-[-0.5px]">{rank}</span>
         </span>
         <button
           type="button"

@@ -67,24 +67,19 @@
   --text-caption2-r--line-height: 1;
 }
 
-/* 글자수 제한 초과 등 입력 거부 피드백용 좌우 흔들림.
+/* 글자수 제한 초과 등 입력 거부 피드백용 좌우 흔들림. 좌↔우 왕복 정확히 2회.
    진폭은 --shake-amp로 요소마다 다르게 줄 수 있습니다. */
 @keyframes shake-x {
-  10%,
-  90% {
-    transform: translateX(calc(var(--shake-amp, 4px) * -0.25));
+  0%,
+  100% {
+    transform: translateX(0);
   }
   20%,
-  80% {
-    transform: translateX(calc(var(--shake-amp, 4px) * 0.5));
-  }
-  30%,
-  50%,
-  70% {
+  60% {
     transform: translateX(calc(var(--shake-amp, 4px) * -1));
   }
   40%,
-  60% {
+  80% {
     transform: translateX(var(--shake-amp, 4px));
   }
 }

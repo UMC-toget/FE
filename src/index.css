@@ -68,7 +68,7 @@
 }
 
 /* 글자수 제한 초과 등 입력 거부 피드백용 좌우 흔들림.
-   진폭은 --shake-amp로 요소마다 다르게 줄 수 있고, 기본값은 입력창 기준(4px)입니다. */
+   진폭은 --shake-amp, 재생 속도는 --shake-duration으로 요소마다 다르게 줄 수 있습니다. */
 @keyframes shake-x {
   10%,
   90% {
@@ -90,5 +90,5 @@
 }
 
 .animate-shake {
-  animation: shake-x 0.4s ease-in-out;
+  animation: shake-x var(--shake-duration, 0.4s) ease-in-out;
 }

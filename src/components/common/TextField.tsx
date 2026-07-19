@@ -4,6 +4,8 @@ import { replayShake } from '../../utils/shake'
 
 // '닉네임' 라벨의 '닉' 글자 잉크 너비(실측 11px)의 1/3을 기준으로 잡은 값에서, 흔들림이 과하다는 피드백에 따라 2/3 수준으로 낮췄습니다.
 const INPUT_SHAKE_AMPLITUDE = '2.7px'
+// 기본(화면 전체) 속도보다 느리게 재생되도록 지속시간을 2배 이상 늘립니다 (체감 속도 절반 이하).
+const INPUT_SHAKE_DURATION = '0.9s'
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   /** 입력창 위에 표시되는 라벨 */
@@ -75,7 +77,12 @@ export default function TextField({
       <div
         ref={boxRef}
         className="flex h-12 w-full items-center gap-2 rounded-lg border border-transparent bg-background px-4 focus-within:border-gray-200 focus-within:bg-white"
-        style={{ '--shake-amp': INPUT_SHAKE_AMPLITUDE } as React.CSSProperties}
+        style={
+          {
+            '--shake-amp': INPUT_SHAKE_AMPLITUDE,
+            '--shake-duration': INPUT_SHAKE_DURATION,
+          } as React.CSSProperties
+        }
       >
         <input
           id={inputId}

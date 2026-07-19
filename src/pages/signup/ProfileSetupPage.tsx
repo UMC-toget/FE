@@ -9,8 +9,8 @@ import { useAuth } from '../../hooks/useAuth'
 import { replayShake } from '../../utils/shake'
 
 const NICKNAME_MAX_LENGTH = 6
-// 화면 전체 흔들림은 입력창 자체보다 은은하게 느껴지도록 진폭을 절반으로 줍니다.
-const PAGE_SHAKE_AMPLITUDE = '2px'
+// 화면 전체 흔들림은 입력창 자체보다 훨씬 은은하게 느껴지도록 진폭을 1/4로 줄입니다.
+const PAGE_SHAKE_AMPLITUDE = '1px'
 
 /** 회원가입 마지막 단계: 프로필(닉네임/사진) 설정 페이지 */
 export default function ProfileSetupPage() {

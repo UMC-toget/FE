@@ -12,8 +12,8 @@ import { replayShake } from '../../utils/shake'
 import { MOCK_USER } from './mockUser'
 
 const NICKNAME_MAX_LENGTH = 6
-// 화면 전체 흔들림은 입력창 자체보다 훨씬 은은하게 느껴지도록 진폭을 1/4로 줄입니다.
-const PAGE_SHAKE_AMPLITUDE = '1px'
+// 화면 전체 흔들림은 입력창 자체보다 훨씬 은은하게 느껴지도록 진폭을 크게 줄입니다.
+const PAGE_SHAKE_AMPLITUDE = '0.4px'
 
 /** 내 정보 페이지: 닉네임/프로필 사진 변경, 로그아웃/계정 삭제 */
 export default function ProfileEditPage() {

@@ -26,7 +26,7 @@ export default function ProfileEditPage() {
   const pageRef = useRef<HTMLDivElement>(null)
 
   const handleSave = () => {
-    // TODO: 회원 정보 수정 API 연동
+    // TODO: 회원 정보 수정 API 연동 (닉네임, ProfileAvatar의 onSelect로 받은 프로필 사진 File 함께 전송)
     setName(nickname)
     setNickname('')
   }
@@ -52,6 +52,7 @@ export default function ProfileEditPage() {
       <Header title="내 정보" />
 
       <div className="mt-6 flex flex-col items-center gap-2">
+        {/* TODO: onSelect로 크롭된 프로필 사진 File을 받아 수정 요청에 포함해야 함 */}
         <ProfileAvatar />
         <p className="text-h3-sb text-black">{name}</p>
       </div>

@@ -8,7 +8,6 @@ import ProfileEditPage from './pages/my/ProfileEditPage'
 import GiftAboutPage from './pages/gift-about/GiftAboutPage'
 import GiftCreateMyPage from './pages/gift-create/GiftCreateMyPage'
 import GiftCreateTogetherPage from './pages/gift-create/GiftCreateTogetherPage'
-import GiftAboutPage from './pages/gift-about/GiftAboutPage'
 import InvitationPage from './pages/invitation/InvitationPage'
 import FundingDetailPage from './pages/funding/FundingDetailPage'
 import MessagesPage from './pages/funding/MessagesPage'
@@ -27,7 +26,6 @@ function App() {
       <Route path="/gift/about" element={<GiftAboutPage />} />
       <Route path="/gift/create/my" element={<GiftCreateMyPage />} />
       <Route path="/gift/create/together" element={<GiftCreateTogetherPage />} />
-      <Route path="/gift/about" element={<GiftAboutPage />} />
       <Route path="/funding/:id/invitation" element={<InvitationPage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />} />
       <Route path="/funding/:id/messages" element={<MessagesPage />} />

@@ -22,17 +22,24 @@
   --color-gray-500: #7f7779;
   --color-gray-600: #797378;
   --color-gray-700: #5b565a;
+  --color-gray-800: #3c393c;
   --color-gray-900: #1e1d1e;
 
   /* 색상 - 기본 */
   --color-black: #191919;
   --color-background: #f5f4f5;
+  /* E02 인사말 카드/아바타 배경 (피그마 값, 정식 명칭은 디자이너 확인 필요) */
+  --color-background-2: #f7f5f8;
 
   /* 타이포그래피 (피그마 텍스트 스타일명 기준)
      사용 예: <p class="text-h3-sb">제목</p> */
   --text-h1-sb: 24px;
   --text-h1-sb--font-weight: 600;
   --text-h1-sb--line-height: 1;
+
+  --text-h2-sb: 20px;
+  --text-h2-sb--font-weight: 600;
+  --text-h2-sb--line-height: 1.45;
 
   --text-h3-sb: 18px;
   --text-h3-sb--font-weight: 600;
@@ -65,6 +72,10 @@
   --text-caption2-r: 10px;
   --text-caption2-r--font-weight: 400;
   --text-caption2-r--line-height: 1;
+
+  --text-caption2-m: 10px;
+  --text-caption2-m--font-weight: 500;
+  --text-caption2-m--line-height: 1;
 }
 
 /* 글자수 제한 초과 등 입력 거부 피드백용 좌우 흔들림. 좌↔우 왕복 정확히 2회.

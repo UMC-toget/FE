@@ -2,11 +2,13 @@ import { useState } from 'react'
 import BottomNav from '../../components/common/BottomNav'
 import HomeBanner from './HomeBanner'
 import GiftBrowseSection from './GiftBrowseSection'
+import WishCreateSheet from '../gift-create/WishCreateSheet'
 import togetLogo from '../../assets/toget-logo.svg'
 import GiftCreateSheet from '../gift-create/GiftCreateSheet'
 
 /** 홈 페이지 (B02: 로그인, 진행 중인 선물이 없을 때 기준) */
 export default function HomePage() {
+  const [wishSheetOpen, setWishSheetOpen] = useState(false)
   const [createSheetOpen, setCreateSheetOpen] = useState(false)
 
   return (
@@ -20,6 +22,8 @@ export default function HomePage() {
         <GiftBrowseSection />
       </div>
 
+      <BottomNav active="home" onFabClick={() => setWishSheetOpen(true)} />
+      <WishCreateSheet open={wishSheetOpen} onClose={() => setWishSheetOpen(false)} />
       <BottomNav active="home" />
       <GiftCreateSheet open={createSheetOpen} onClose={() => setCreateSheetOpen(false)} />
     </div>

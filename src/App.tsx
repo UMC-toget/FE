@@ -13,6 +13,7 @@ import FundingDetailPage from './pages/funding/FundingDetailPage'
 import MessagesPage from './pages/funding/MessagesPage'
 import ParticipatePage from './pages/participate/ParticipatePage'
 import CompletePage from './pages/participate/CompletePage'
+import GiftReviewDetailPage from './pages/gift-review/GiftReviewDetailPage'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/funding/:id/messages" element={<MessagesPage />} />
       <Route path="/funding/:id/participate" element={<ParticipatePage />} />
       <Route path="/funding/:id/complete" element={<CompletePage />} />
+      <Route path="/gift/review/:id" element={<GiftReviewDetailPage />} />
     </Routes>
   )
 }

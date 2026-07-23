@@ -11,6 +11,8 @@ import GiftCreateMyPage from './pages/gift-create/GiftCreateMyPage'
 import GiftCreateTogetherPage from './pages/gift-create/GiftCreateTogetherPage'
 import InvitationPage from './pages/invitation/InvitationPage'
 import FundingDetailPage from './pages/funding/FundingDetailPage'
+import FundingEditSelectPage from './pages/funding/FundingEditSelectPage'
+import FundingEditStepPage from './pages/funding/FundingEditStepPage'
 import MessagesPage from './pages/funding/MessagesPage'
 import ParticipatePage from './pages/participate/ParticipatePage'
 import CompletePage from './pages/participate/CompletePage'
@@ -30,6 +32,8 @@ function App() {
       <Route path="/gift/create/together" element={<GiftCreateTogetherPage />} />
       <Route path="/funding/:id/invitation" element={<InvitationPage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />} />
+      <Route path="/funding/:id/edit" element={<FundingEditSelectPage />} />
+      <Route path="/funding/:id/edit/:step" element={<FundingEditStepPage />} />
       <Route path="/funding/:id/messages" element={<MessagesPage />} />
       <Route path="/funding/:id/participate" element={<ParticipatePage />} />
       <Route path="/funding/:id/complete" element={<CompletePage />} />

@@ -17,6 +17,7 @@ import MessagesPage from './pages/funding/MessagesPage'
 import ParticipatePage from './pages/participate/ParticipatePage'
 import CompletePage from './pages/participate/CompletePage'
 import ReviewWritePage from './pages/gift-review/ReviewWritePage'
+import ReviewCompletePage from './pages/gift-review/ReviewCompletePage'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/funding/:id/participate" element={<ParticipatePage />} />
       <Route path="/funding/:id/complete" element={<CompletePage />} />
       <Route path="/gift/review/write/:type" element={<ReviewWritePage />} />
+      <Route path="/gift/review/complete/:type" element={<ReviewCompletePage />} />
     </Routes>
   )
 }

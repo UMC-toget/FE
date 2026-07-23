@@ -71,3 +71,51 @@ export const REVIEW_WRITE_TYPES: Record<ReviewWriteType, ReviewWriteTypeConfig> 
 export const REVIEW_TITLE_MAX_LENGTH = 20
 /** 내용 글자수 제한 */
 export const REVIEW_CONTENT_MAX_LENGTH = 60
+
+interface ReviewCompleteTypeConfig {
+  key: ReviewWriteType
+  /** 완료 문구 제목 */
+  completeTitle: string
+  /** 완료 문구 설명 */
+  completeDescription: string
+  /** 링크 박스 라벨 */
+  linkLabel: string
+  /** 공유하기 버튼 라벨 */
+  shareLabel: string
+  /** 미리보기 버튼 라벨 */
+  previewLabel: string
+}
+
+/**
+ * J파트 작성물 3종 완료 화면 문구 (피그마 "초기 디자인" 페이지 기준)
+ * - gift: 후기: 완료 (#754:7522)
+ * - news: J03-1) 전달완료 : 초대장 만들기 (#1933:103464)
+ * - message: J02-1) 마음전하기:초대장 링크 (#1933:103650)
+ */
+export const REVIEW_COMPLETE_TYPES: Record<ReviewWriteType, ReviewCompleteTypeConfig> = {
+  gift: {
+    key: 'gift',
+    completeTitle: '선물 후기가 만들어졌어요!',
+    completeDescription: '함께해 준 사람들에게 선물 도착 소식을 전해보세요.',
+    linkLabel: '후기 링크',
+    shareLabel: '후기 공유',
+    previewLabel: '후기 미리보기',
+  },
+  news: {
+    key: 'news',
+    completeTitle: '전달 소식 전하기가 완료되었어요!',
+    completeDescription: '함께해 준 친구들에게 선물 도착 소식을 전해보세요.',
+    // 피그마 원본 링크 박스 라벨이 message와 동일하게 "초대장"으로 되어 있어 그대로 따름
+    linkLabel: '초대장 링크',
+    shareLabel: '초대장 공유',
+    previewLabel: '초대장 미리보기',
+  },
+  message: {
+    key: 'message',
+    completeTitle: '마음전하기 초대장이 완료되었어요!',
+    completeDescription: '선물과 함께 모두가 모은 마음을 함께 전달하세요.',
+    linkLabel: '초대장 링크',
+    shareLabel: '초대장 공유',
+    previewLabel: '초대장 미리보기',
+  },
+}

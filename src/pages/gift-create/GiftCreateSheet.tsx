@@ -12,6 +12,9 @@ const CARD_ICONS: Record<GiftPageType, string> = {
   together: togetherCat,
 }
 
+// '내 선물 페이지'는 새로 만든 5단계 만들기 플로우(/funding/create)로 연결
+const resolveCreatePath = (type: GiftPageType) => (type === 'my' ? '/funding/create' : `/gift/create/${type}`)
+
 interface GiftCreateSheetProps {
   open: boolean
   onClose: () => void
@@ -28,21 +31,21 @@ export default function GiftCreateSheet({ open, onClose }: GiftCreateSheetProps)
       return
     }
     onClose()
-    navigate(`/gift/create/${type}`)
+    navigate(resolveCreatePath(type))
   }
 
   const handleStartNew = () => {
     const type = draftModalType
     setDraftModalType(null)
     onClose()
-    if (type) navigate(`/gift/create/${type}`)
+    if (type) navigate(resolveCreatePath(type))
   }
 
   const handleContinueDraft = () => {
     const type = draftModalType
     setDraftModalType(null)
     onClose()
-    if (type) navigate(`/gift/create/${type}`, { state: { continueDraft: true } })
+    if (type) navigate(resolveCreatePath(type), { state: { continueDraft: true } })
   }
 
   const handleGuideClick = () => {

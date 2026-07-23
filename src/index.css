@@ -104,3 +104,13 @@ html {
 .animate-shake {
   animation: shake-x 0.225s ease-in-out;
 }
+
+/* 스크롤은 되지만 스크롤바는 숨기고 싶을 때 (예: 초대장 캐릭터/색상 캐러셀) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

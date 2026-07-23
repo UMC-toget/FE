@@ -83,8 +83,7 @@ export default function ProfileAvatar({ onSelect }: ProfileAvatarProps) {
       <PhotoSourceSheet
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
-        onSelectLibrary={() => libraryInputRef.current?.click()}
-        onSelectFile={() => libraryInputRef.current?.click()}
+        onSelectPhoto={() => libraryInputRef.current?.click()}
         onSelectCamera={() => cameraInputRef.current?.click()}
       />
 

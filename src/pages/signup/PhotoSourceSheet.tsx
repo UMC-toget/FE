@@ -3,27 +3,19 @@ import BottomSheet from '../../components/common/BottomSheet'
 interface PhotoSourceSheetProps {
   open: boolean
   onClose: () => void
-  onSelectLibrary: () => void
+  onSelectPhoto: () => void
   onSelectCamera: () => void
-  onSelectFile: () => void
 }
 
 /**
  * 프로필 사진 등록 방식을 고르는 바텀시트 (피그마 기준).
  * '웹 사진 검색'은 이미지 검색 API가 없어 비활성 처리했고 클릭해도 아무 동작이 없습니다.
  */
-export default function PhotoSourceSheet({
-  open,
-  onClose,
-  onSelectLibrary,
-  onSelectCamera,
-  onSelectFile,
-}: PhotoSourceSheetProps) {
+export default function PhotoSourceSheet({ open, onClose, onSelectPhoto, onSelectCamera }: PhotoSourceSheetProps) {
   const options = [
     { id: 'web', label: '웹 사진 검색', onClick: undefined },
-    { id: 'library', label: '사진 보관함', onClick: onSelectLibrary },
+    { id: 'photo', label: '사진 선택', onClick: onSelectPhoto },
     { id: 'camera', label: '사진 찍기', onClick: onSelectCamera },
-    { id: 'file', label: '파일 선택', onClick: onSelectFile },
   ] as const
 
   return (

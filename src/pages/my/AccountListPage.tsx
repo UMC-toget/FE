@@ -36,16 +36,15 @@ export default function AccountListPage() {
               {MOCK_ACCOUNTS.map((account) => (
                 <div key={account.id} className="flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-3.5">
                   <div className="flex gap-3">
-                    <span
-                      className="flex size-[63px] shrink-0 items-center justify-center rounded-md text-b1-m font-semibold"
-                      style={{ backgroundColor: account.bankColor, color: account.bankTextColor }}
-                    >
-                      {account.bankName[0]}
+                    <span className="flex size-[63px] shrink-0 items-center justify-center rounded-md bg-background">
+                      <img src={account.bankLogo} alt="" className="size-[50px] object-contain" />
                     </span>
                     <div className="flex flex-col gap-1.5">
                       <p className="text-caption1-r text-gray-700">{account.bankName}</p>
-                      <p className="text-b2-m text-black">{account.accountHolder}</p>
-                      <p className="text-b2-m text-black">{account.accountNumber}</p>
+                      <div className="flex flex-col">
+                        <p className="text-b2-m text-black">{account.accountHolder}</p>
+                        <p className="text-b2-m text-black">{account.accountNumber}</p>
+                      </div>
                     </div>
                   </div>
                   <button

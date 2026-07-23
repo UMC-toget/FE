@@ -28,7 +28,7 @@ export default function AccountListPage() {
         </button>
       </div>
 
-      <div className="mt-5 flex flex-col gap-5 bg-background px-[18px] py-5">
+      <div className="mt-5 flex flex-1 flex-col gap-5 bg-background px-[18px] pt-5">
         {MOCK_ACCOUNTS.length > 0 ? (
           <>
             <p className="text-b1-m text-black">등록된 {MOCK_ACCOUNTS.length}개 계좌</p>
@@ -39,9 +39,9 @@ export default function AccountListPage() {
                     <span className="flex size-[63px] shrink-0 items-center justify-center rounded-md bg-background">
                       <img src={account.bankLogo} alt="" className="size-[50px] object-contain" />
                     </span>
-                    <div className="flex flex-col gap-1.5">
+                    <div className="flex flex-col gap-3">
                       <p className="text-caption1-r text-gray-700">{account.bankName}</p>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col gap-1">
                         <p className="text-b2-m text-black">{account.accountHolder}</p>
                         <p className="text-b2-m text-black">{account.accountNumber}</p>
                       </div>
@@ -60,7 +60,7 @@ export default function AccountListPage() {
             </div>
           </>
         ) : (
-          <div className="flex flex-col items-center gap-2 py-20">
+          <div className="flex flex-1 flex-col items-center justify-center gap-2 pb-20">
             <BankIcon className="size-12 text-gray-400" />
             <p className="text-b1-m text-gray-600">등록된 계좌가 없어요</p>
           </div>

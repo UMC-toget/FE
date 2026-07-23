@@ -1,5 +1,6 @@
-import type { LetterColor } from './letterColors'
-import { LETTER_COLORS } from './letterColors'
+import type { LetterColor } from '../../components/common/letterPalette'
+import { LETTER_COLORS } from '../../components/common/letterPalette'
+import LetterCard from '../../components/common/LetterCard'
 import CheckOption from './CheckOption'
 
 interface LetterStepProps {
@@ -37,32 +38,20 @@ export default function LetterStep({
               onClick={() => onColorChange(color)}
               className={`size-[35px] shrink-0 rounded-[4px] ${letterColor.id === color.id ? '' : 'opacity-60'}`}
               style={{
-                backgroundColor: color.bg,
+                backgroundColor: color.background,
                 ...(color.id === 'white' && { border: '2px solid var(--color-gray-500)' }),
               }}
             />
           ))}
         </div>
 
-        <div
-          className="rounded-xl border px-4 py-3"
-          style={{ backgroundColor: letterColor.bg, borderColor: letterColor.border }}
-        >
-          <p className="flex h-6 items-center text-b1-m text-black">{hostName}에게</p>
-          <textarea
-            value={letter}
-            onChange={(e) => onLetterChange(e.target.value)}
-            placeholder="내용을 입력해주세요"
-            rows={10}
-            className="mt-[13px] w-full resize-none bg-transparent text-b2-r leading-[28px] text-gray-800 outline-none placeholder:text-[var(--ph-color)]"
-            style={
-              {
-                '--ph-color': letterColor.placeholder,
-                backgroundImage: `repeating-linear-gradient(to bottom, transparent, transparent 27px, ${letterColor.border} 27px, ${letterColor.border} 28px)`,
-              } as React.CSSProperties
-            }
-          />
-        </div>
+        <LetterCard
+          color={letterColor}
+          state="preInput"
+          title={`${hostName}에게`}
+          content={letter}
+          onContentChange={onLetterChange}
+        />
 
         <CheckOption label="메세지 내용 비공개 설정" checked={isPrivate} onChange={onPrivateChange} />
       </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import type { LetterColor } from './letterColors'
-import CaretDownIcon from '../../components/icons/CaretDownIcon'
+import type { LetterColor } from '../../components/common/letterPalette'
+import LetterCard from '../../components/common/LetterCard'
 
 // TODO: BE 연동 후 펀딩 상세 응답의 개설자 계좌 정보로 교체 (D05에서 등록한 계좌)
 const MOCK_ACCOUNT = {
@@ -47,29 +47,13 @@ export default function DepositStep({ hostName, letter, letterColor, amount }: D
       <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <p className="text-b1-m leading-normal text-black">축하 메세지</p>
-        <button
-          type="button"
-          onClick={() => setLetterOpen((prev) => !prev)}
-          className="flex flex-col rounded-xl border px-4 py-3"
-          style={{ backgroundColor: letterColor.bg, borderColor: letterColor.border }}
-        >
-          <span className="flex w-full items-center justify-between">
-            <span className="text-b1-m text-black">
-              {hostName}에게{!letterOpen && '···'}
-            </span>
-            <CaretDownIcon className={`size-6 text-gray-700 ${letterOpen ? 'rotate-180' : ''}`} />
-          </span>
-          {letterOpen && (
-            <span
-              className="mt-2 block w-full whitespace-pre-line pb-[28px] text-left text-b2-r leading-[28px] text-gray-800"
-              style={{
-                backgroundImage: `repeating-linear-gradient(to bottom, transparent, transparent 27px, ${letterColor.border} 27px, ${letterColor.border} 28px)`,
-              }}
-            >
-              {letter}
-            </span>
-          )}
-        </button>
+        <LetterCard
+          color={letterColor}
+          state={letterOpen ? 'open' : 'folded'}
+          title={`${hostName}에게`}
+          content={letter}
+          onToggle={() => setLetterOpen((prev) => !prev)}
+        />
       </div>
 
       <div className="flex flex-col gap-1">

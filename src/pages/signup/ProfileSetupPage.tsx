@@ -21,7 +21,7 @@ export default function ProfileSetupPage() {
   const pageRef = useRef<HTMLDivElement>(null)
 
   const handleConfirm = () => {
-    // TODO: 가입 API 연동
+    // TODO: 가입 API 연동 (닉네임, ProfileAvatar의 onSelect로 받은 프로필 사진 File 함께 전송)
     login()
     setTermsOpen(false)
     navigate('/home')
@@ -41,6 +41,7 @@ export default function ProfileSetupPage() {
       </div>
 
       <div className="mt-[69px] flex flex-col items-center gap-2">
+        {/* TODO: onSelect로 크롭된 프로필 사진 File을 받아 가입 요청에 포함해야 함 */}
         <ProfileAvatar />
         <p className="text-h3-sb text-black">{nickname || '닉네임'}</p>
       </div>

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/common/Header'
+import BottomNav from '../../components/common/BottomNav'
 import PlusIcon from '../../components/icons/PlusIcon'
 import ChevronRightIcon from '../../components/icons/ChevronRightIcon'
 import EditPencilIcon from '../../components/icons/EditPencilIcon'
@@ -11,7 +12,7 @@ export default function AccountListPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-[402px] flex-col bg-white">
+    <div className="mx-auto flex min-h-dvh w-full max-w-[402px] flex-col bg-white pb-32">
       <Header title="등록된 나의 계좌" />
 
       <div className="px-[18px] pt-4">
@@ -28,13 +29,13 @@ export default function AccountListPage() {
         </button>
       </div>
 
-      <div className="mt-5 flex flex-1 flex-col gap-5 bg-background px-[18px] pt-5">
+      <div className="mt-5 flex flex-col gap-5 bg-background px-[18px] py-5">
         {MOCK_ACCOUNTS.length > 0 ? (
           <>
             <p className="text-b1-m text-black">등록된 {MOCK_ACCOUNTS.length}개 계좌</p>
             <div className="flex flex-col gap-4">
               {MOCK_ACCOUNTS.map((account) => (
-                <div key={account.id} className="flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-3.5">
+                <div key={account.id} className="flex flex-col gap-3 rounded-xl border border-gray-100 bg-white px-3.5 py-3">
                   <div className="flex gap-3">
                     <span className="flex size-[63px] shrink-0 items-center justify-center rounded-md bg-background">
                       <img src={account.bankLogo} alt="" className="size-[50px] object-contain" />
@@ -60,12 +61,14 @@ export default function AccountListPage() {
             </div>
           </>
         ) : (
-          <div className="flex flex-1 flex-col items-center justify-center gap-2 pb-20">
+          <div className="flex flex-col items-center gap-2 py-20">
             <BankIcon className="size-12 text-gray-400" />
             <p className="text-b1-m text-gray-600">등록된 계좌가 없어요</p>
           </div>
         )}
       </div>
+
+      <BottomNav active="my" />
     </div>
   )
 }

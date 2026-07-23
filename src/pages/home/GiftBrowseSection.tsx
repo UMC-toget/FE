@@ -16,6 +16,8 @@ export default function GiftBrowseSection() {
 
   // 카테고리와 가격대 필터는 교집합으로 함께 적용됩니다 (피그마 dev mode 주석 기준).
   // '요즘 인기'는 특정 상황(occasion) 태그가 아니라 전체를 인기순으로 보여주는 탭이라 카테고리 조건을 걸지 않습니다.
+  // TODO: '요즘 인기'의 정렬 순서는 사용자별 위시 등록 통계를 내림차순 집계한 순위여야 합니다 (백엔드 API 연동 필요).
+  // 지금은 그 통계를 낼 수 없어 mock 배열 선언 순서를 그대로 사용합니다.
   const filteredProducts = MOCK_PRODUCTS.filter(
     (p) =>
       (category === '요즘 인기' || p.occasion === category) &&

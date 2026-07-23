@@ -22,7 +22,7 @@ export default function SplashPage() {
   }, [goToLogin])
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-[402px] flex-col items-center justify-center bg-white">
+    <div className="mx-auto flex min-h-svh w-full max-w-[402px] flex-col items-center justify-center bg-white">
       <video
         autoPlay
         muted

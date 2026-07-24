@@ -7,29 +7,32 @@ import DefaultAvatar from '../../components/common/DefaultAvatar'
 import SearchIcon from '../../components/icons/SearchIcon'
 import ChevronRightIcon from '../../components/icons/ChevronRightIcon'
 import { useAuth } from '../../hooks/useAuth'
-import { MOCK_USER } from './mockUser'
+import { useMyProfile } from '../../hooks/useMyProfile'
+import { OAUTH_PROVIDER_LABELS } from '../../api/users'
 
 const TOAST_DURATION_MS = 2500
 
-const MENU_SECTIONS: { title: string; items: string[] }[] = [
-  { title: '선물 페이지', items: ['내 선물 페이지', '함께 선물 페이지'] },
-  { title: '계좌', items: ['등록된 나의 계좌'] },
-  { title: '설정', items: ['알림 설정', '고객 문의', '이용약관', '개인정보 처리 방침'] },
+const MENU_SECTIONS: { title: string; items: { label: string; path?: string }[] }[] = [
+  {
+    title: '선물 페이지',
+    items: [{ label: '내 선물 페이지', path: '/funding/create' }, { label: '함께 선물 페이지' }],
+  },
+  { title: '계좌', items: [{ label: '등록된 나의 계좌', path: '/my/accounts' }] },
+  {
+    title: '설정',
+    items: [{ label: '알림 설정' }, { label: '고객 문의' }, { label: '이용약관' }, { label: '개인정보 처리 방침' }],
+  },
 ]
 
 // 비로그인 상태에서는 설정 섹션만 노출됩니다 (피그마 기준)
 const GUEST_MENU_SECTIONS = MENU_SECTIONS.filter((s) => s.title === '설정')
-
-// TODO: 나머지 메뉴 항목들도 해당 화면 구현 후 경로 추가
-const MENU_ITEM_PATHS: Record<string, string> = {
-  '등록된 나의 계좌': '/my/accounts',
-}
 
 /** 마이페이지 (I. 마이) */
 export default function MyPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const { isLoggedIn } = useAuth()
+  const { data: profile } = useMyProfile()
   // 다른 페이지에서 navigate state로 전달한 토스트 메시지를 일정 시간 표시
   const [toastMessage, setToastMessage] = useState<string | null>(
     () => (location.state as { toast?: string } | null)?.toast ?? null,
@@ -62,10 +65,12 @@ export default function MyPage() {
         <div className="flex items-center gap-3">
           <DefaultAvatar className="size-[52px]" />
           <span className="flex flex-col items-start gap-1 text-left">
-            <span className="text-b1-m text-black">{isLoggedIn ? MOCK_USER.name : '로그인 및 회원가입'}</span>
+            <span className="text-b1-m text-black">
+              {isLoggedIn ? (profile?.nickname ?? '회원') : '로그인 및 회원가입'}
+            </span>
             <span className="text-caption1-r text-gray-600">
               {isLoggedIn
-                ? `${MOCK_USER.loginProvider}으로 로그인 중이에요`
+                ? `${OAUTH_PROVIDER_LABELS[profile?.oauthProvider ?? ''] ?? '소셜'}으로 로그인 중이에요`
                 : '소셜 로그인으로 선물 페이지를 모아 볼 수 있어요'}
             </span>
           </span>
@@ -82,9 +87,9 @@ export default function MyPage() {
             <div className="flex flex-col gap-3">
               {section.items.map((item) => (
                 <MenuRow
-                  key={item}
-                  label={item}
-                  onClick={MENU_ITEM_PATHS[item] ? () => navigate(MENU_ITEM_PATHS[item]) : undefined}
+                  key={item.label}
+                  label={item.label}
+                  onClick={item.path ? () => navigate(item.path!) : undefined}
                 />
               ))}
             </div>

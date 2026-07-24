@@ -3,7 +3,7 @@ import BottomSheet from '../../components/common/BottomSheet'
 import ChevronRightIcon from '../../components/icons/ChevronRightIcon'
 import bannerCat from '../../assets/banner-cat.svg'
 import togetherCat from '../../assets/together-cat.svg'
-import wishGift from '../../assets/wish-gift.png'
+import wishGift from '../../assets/wish-gift.svg'
 
 interface WishCreateSheetProps {
   open: boolean
@@ -29,7 +29,7 @@ const GIFT_PAGE_CARDS: WishCreateCardInfo[] = [
     icon: bannerCat,
     title: '내 선물 페이지 만들기',
     description: '내가 받고 싶은 선물을 담아,\n친구들에게 공유할 수 있어요.',
-    path: '/gift/create/my',
+    path: '/funding/create',
   },
   {
     icon: togetherCat,

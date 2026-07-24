@@ -3,15 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google'
 import type { CredentialResponse } from '@react-oauth/google'
 import CloseIcon from '../../components/icons/CloseIcon'
+import Toast from '../../components/common/Toast'
 import togetLogo from '../../assets/toget-logo.svg'
 import loginCharacter from '../../assets/login-character.svg'
 import heartBig from '../../assets/heart-big.svg'
 import heartSmall from '../../assets/heart-small.svg'
 import heartRight from '../../assets/heart-right.svg'
 import kakaoIcon from '../../assets/icon-kakao.png'
+import googleIcon from '../../assets/icon-google.png'
 import { useAuth } from '../../hooks/useAuth'
 import { postSocialLogin } from '../../api/auth'
 import { setTokens } from '../../lib/tokenStorage'
+
+const LOGIN_FAIL_MESSAGE = '로그인에 실패했어요. 다시 시도해 주세요.'
 
 /** 카카오/구글 소셜 로그인 페이지 */
 export default function LoginPage() {
@@ -34,7 +38,7 @@ export default function LoginPage() {
       login()
       navigate(result.isNewUser ? '/signup/profile' : '/home', { replace: true })
     } catch {
-      setErrorMessage('로그인에 실패했어요. 다시 시도해 주세요.')
+      setErrorMessage(LOGIN_FAIL_MESSAGE)
     }
   }
 
@@ -57,40 +61,48 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <div className="relative mx-auto -mb-[11px] mt-[130px] w-[207px]">
+      <div className="relative mx-auto -mb-[11px] mt-[117px] w-[207px]">
         <img src={loginCharacter} alt="투겟 캐릭터" className="h-[189px] w-full" />
         <img src={heartBig} alt="" className="absolute -left-[60px] -top-[43px] size-[61px] -rotate-[23deg]" />
         <img src={heartSmall} alt="" className="absolute -left-[54px] -top-[65px] size-8 rotate-[6deg]" />
         <img src={heartRight} alt="" className="absolute -right-[52px] top-[101px] size-12 rotate-[34deg]" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center gap-3">
+      <div className="relative z-10 flex flex-col items-center gap-4">
         <button
           type="button"
           onClick={handleKakaoLogin}
           className="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl bg-[#fee500]"
         >
           <img src={kakaoIcon} alt="" className="size-6 object-contain p-1" />
-          <span className="text-sm font-semibold text-[#3c1e1e]">카카오로 시작하기</span>
+          <span className="text-b2-m text-[#3c1e1e]">카카오로 시작하기</span>
         </button>
-        <div className="w-full overflow-hidden rounded-xl [&>div]:!w-full">
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => setErrorMessage('로그인에 실패했어요. 다시 시도해 주세요.')}
-            shape="rectangular"
-            size="large"
-            text="continue_with"
-            width="360"
-          />
+        {/* 구글 위젯은 텍스트/스타일을 자유롭게 바꿀 수 없어, 피그마 스펙대로 그린 커스텀 버튼 뒤에
+            실제 GoogleLogin 위젯을 투명하게 겹쳐서 클릭을 그대로 위젯이 받도록 처리 */}
+        <div className="relative h-[52px] w-full">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center gap-3 rounded-xl border border-gray-600 bg-white">
+            <img src={googleIcon} alt="" className="size-4 object-contain" />
+            <span className="text-b2-m text-black">구글로 시작하기</span>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-xl opacity-0 [&>div]:!w-full">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => setErrorMessage(LOGIN_FAIL_MESSAGE)}
+              shape="rectangular"
+              size="large"
+              width="366"
+            />
+          </div>
         </div>
-        {errorMessage && <p className="text-caption1-r text-pink-500">{errorMessage}</p>}
       </div>
 
-      <p className="mt-6 text-center text-caption2-r leading-normal text-gray-700">
+      <p className="mt-5 text-center text-caption2-r leading-normal text-gray-700">
         카카오 또는 구글 계정으로 시작하면
         <br />
         서비스 이용약관과 개인정보처리방침에 동의하게 됩니다.
       </p>
+
+      <Toast open={errorMessage !== null} message={errorMessage ?? ''} standalone />
     </div>
   )
 }

@@ -9,6 +9,7 @@ const SPLASH_FALLBACK_MS = 6000
 export default function SplashPage() {
   const navigate = useNavigate()
   const navigatedRef = useRef(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const goToLogin = useCallback(() => {
     if (navigatedRef.current) return
@@ -21,9 +22,23 @@ export default function SplashPage() {
     return () => clearTimeout(timer)
   }, [goToLogin])
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    // JSX의 muted 속성만으로는 iOS Safari에서 자동재생 시점에 실제로 음소거 상태가
+    // 아직 반영되지 않아 재생이 막히는 경우가 있어, DOM에 직접 설정 후 play()를 호출합니다.
+    video.muted = true
+    video.play().catch(() => {
+      // 기기/브라우저 설정(예: iOS "자동 재생 안 함")으로 재생 자체가 막히면
+      // 빈 화면에 재생 버튼만 뜬 채로 방치하지 않고 바로 다음 화면으로 넘어갑니다.
+      goToLogin()
+    })
+  }, [goToLogin])
+
   return (
     <div className="mx-auto flex h-svh w-full max-w-[402px] items-center justify-center overflow-hidden bg-white">
       <video
+        ref={videoRef}
         autoPlay
         muted
         playsInline

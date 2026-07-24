@@ -100,7 +100,6 @@ export default function GiftBrowseSection() {
       />
       <WishTypeSheet
         open={wishSheetProductId != null}
-        selected={null}
         onClose={() => setWishSheetProductId(null)}
         onSelect={handleSelectWishType}
       />

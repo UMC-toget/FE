@@ -20,7 +20,7 @@ export default function MyFundingCard({ funding, onOpen, onShareInvite }: MyFund
         <div className="flex flex-1 flex-col gap-[18px]">
           <div className="flex items-start justify-between gap-2">
             <div className="flex items-start gap-2">
-              <div className="flex shrink-0 flex-col gap-1">
+              <div className="flex shrink-0 flex-col gap-[9px]">
                 <p className="whitespace-nowrap text-b2-m text-black">{funding.title}</p>
                 <p className="whitespace-nowrap text-caption1-r text-gray-700">
                   목표 {funding.targetAmount.toLocaleString()}원

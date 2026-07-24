@@ -26,8 +26,14 @@ export default function GiftBrowseSection() {
   // 비로그인 상태에서 상품 카드/위시 등록 버튼을 선택하면 로그인 화면으로 보냅니다 (피그마 B01 기준).
   const handleLoginRequired = () => navigate('/login')
 
-  const handleSelectWishType = (type: WishType) => {
-    if (wishSheetProductId != null) addWish(wishSheetProductId, type)
+  const handleSelectWishType = (type: WishType | null) => {
+    if (wishSheetProductId != null) {
+      if (type === null) {
+        removeWish(wishSheetProductId)
+      } else {
+        addWish(wishSheetProductId, type)
+      }
+    }
     setWishSheetProductId(null)
   }
 
@@ -82,7 +88,6 @@ export default function GiftBrowseSection() {
               wished={product.id in wishes}
               onLoginRequired={handleLoginRequired}
               onWishClick={() => setWishSheetProductId(product.id)}
-              onRemoveWish={() => removeWish(product.id)}
             />
           ))}
         </div>
@@ -100,6 +105,7 @@ export default function GiftBrowseSection() {
       />
       <WishTypeSheet
         open={wishSheetProductId != null}
+        selected={wishSheetProductId != null ? (wishes[wishSheetProductId] ?? null) : null}
         onClose={() => setWishSheetProductId(null)}
         onSelect={handleSelectWishType}
       />

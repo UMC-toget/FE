@@ -11,38 +11,24 @@ interface ProductCardProps {
   wished: boolean
   /** 비로그인 상태에서 카드/위시 버튼 클릭 시 호출 (로그인 화면으로 라우팅) */
   onLoginRequired: () => void
-  /** 위시 미등록 상태에서 위시 버튼 클릭 시 호출 (위시 유형 선택 바텀시트 오픈) */
+  /** 위시 버튼 클릭 시 호출 (위시 유형 선택 바텀시트 오픈 — 이미 등록된 상품이면 현재 유형이 미리 선택된 채로 열림) */
   onWishClick: () => void
-  /** 위시 등록 상태에서 위시 버튼 클릭 시 호출 (위시 해제) */
-  onRemoveWish: () => void
 }
 
 /** 선물 둘러보기 상품 카드. 좌상단에 순위 번호, 우상단 버튼으로 위시 등록을 토글합니다. */
-export default function ProductCard({
-  product,
-  rank,
-  isLoggedIn,
-  wished,
-  onLoginRequired,
-  onWishClick,
-  onRemoveWish,
-}: ProductCardProps) {
+export default function ProductCard({ product, rank, isLoggedIn, wished, onLoginRequired, onWishClick }: ProductCardProps) {
   const handleCardClick = () => {
     if (!isLoggedIn) onLoginRequired()
     // TODO: 상품 상세 화면 구현 후 로그인 상태일 때 해당 화면으로 라우팅
   }
 
-  const toggleWish = (e: { stopPropagation: () => void }) => {
+  const handleWishClick = (e: { stopPropagation: () => void }) => {
     e.stopPropagation()
     if (!isLoggedIn) {
       onLoginRequired()
       return
     }
-    if (wished) {
-      onRemoveWish()
-    } else {
-      onWishClick()
-    }
+    onWishClick()
   }
 
   return (
@@ -56,13 +42,13 @@ export default function ProductCard({
         <span
           role="button"
           tabIndex={0}
-          aria-label={wished ? '위시 해제' : '위시 등록'}
+          aria-label="위시 등록"
           aria-pressed={wished}
-          onClick={toggleWish}
+          onClick={handleWishClick}
           onKeyDown={(e) => {
             if (e.key !== 'Enter' && e.key !== ' ') return
             e.preventDefault()
-            toggleWish(e)
+            handleWishClick(e)
           }}
           className={`absolute right-3 top-3 flex size-6 items-center justify-center rounded-full ${
             wished ? 'bg-gray-900 text-white' : 'bg-white text-gray-200'

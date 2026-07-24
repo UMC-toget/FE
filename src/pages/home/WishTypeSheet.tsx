@@ -5,8 +5,11 @@ import type { WishType } from '../../store/wishStore'
 
 interface WishTypeSheetProps {
   open: boolean
+  /** 이미 위시 등록된 상품이면 현재 유형, 아니면 null */
+  selected: WishType | null
   onClose: () => void
-  onSelect: (type: WishType) => void
+  /** 유형을 선택하면 해당 유형으로, 이미 선택된 유형을 다시 누르면 null(위시 해제)로 호출됩니다 */
+  onSelect: (type: WishType | null) => void
 }
 
 const OPTIONS: { type: WishType; label: string }[] = [
@@ -18,14 +21,16 @@ const OPTIONS: { type: WishType; label: string }[] = [
 const SELECT_CLOSE_DELAY_MS = 350
 
 /** 상품 카드에서 위시 등록 시 유형(받고 싶은/주고 싶은)을 고르는 바텀시트 (피그마 기준) */
-export default function WishTypeSheet({ open, onClose, onSelect }: WishTypeSheetProps) {
+export default function WishTypeSheet({ open, selected, onClose, onSelect }: WishTypeSheetProps) {
   // BottomSheet는 open=false일 때 children을 언마운트하므로, 다시 열릴 때마다
-  // 이 state는 초기값으로 새로 시작됩니다 (이전 선택 표시가 남지 않음).
-  const [picked, setPicked] = useState<WishType | null>(null)
+  // 이 state는 selected(현재 위시 유형)로 새로 시작됩니다.
+  const [picked, setPicked] = useState<WishType | null>(selected)
 
   const handlePick = (type: WishType) => {
-    setPicked(type)
-    setTimeout(() => onSelect(type), SELECT_CLOSE_DELAY_MS)
+    // 이미 체크된 항목을 다시 누르면 선택 해제(위시 해제)로 처리합니다.
+    const next = picked === type ? null : type
+    setPicked(next)
+    setTimeout(() => onSelect(next), SELECT_CLOSE_DELAY_MS)
   }
 
   return (

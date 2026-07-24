@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google'
+import type { CredentialResponse } from '@react-oauth/google'
 import CloseIcon from '../../components/icons/CloseIcon'
 import togetLogo from '../../assets/toget-logo.svg'
 import loginCharacter from '../../assets/login-character.svg'
@@ -6,15 +9,33 @@ import heartBig from '../../assets/heart-big.svg'
 import heartSmall from '../../assets/heart-small.svg'
 import heartRight from '../../assets/heart-right.svg'
 import kakaoIcon from '../../assets/icon-kakao.png'
-import googleIcon from '../../assets/icon-google.png'
+import { useAuth } from '../../hooks/useAuth'
+import { postSocialLogin } from '../../api/auth'
+import { setTokens } from '../../lib/tokenStorage'
 
 /** 카카오/구글 소셜 로그인 페이지 */
 export default function LoginPage() {
   const navigate = useNavigate()
+  const { login } = useAuth()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  // TODO: 소셜 로그인 API 연동 후 실제 OAuth 플로우로 교체
-  const handleSocialLogin = () => {
+  // TODO: 카카오 JavaScript 키 발급 후 실제 OAuth 플로우로 교체
+  const handleKakaoLogin = () => {
     navigate('/signup/profile')
+  }
+
+  const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+    const idToken = credentialResponse.credential
+    if (!idToken) return
+    setErrorMessage(null)
+    try {
+      const result = await postSocialLogin('google', idToken)
+      setTokens(result.accessToken, result.refreshToken)
+      login()
+      navigate(result.isNewUser ? '/signup/profile' : '/home', { replace: true })
+    } catch {
+      setErrorMessage('로그인에 실패했어요. 다시 시도해 주세요.')
+    }
   }
 
   return (
@@ -43,23 +64,26 @@ export default function LoginPage() {
         <img src={heartRight} alt="" className="absolute -right-[52px] top-[101px] size-12 rotate-[34deg]" />
       </div>
 
-      <div className="relative z-10 flex flex-col gap-3">
+      <div className="relative z-10 flex flex-col items-center gap-3">
         <button
           type="button"
-          onClick={handleSocialLogin}
+          onClick={handleKakaoLogin}
           className="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl bg-[#fee500]"
         >
           <img src={kakaoIcon} alt="" className="size-6 object-contain p-1" />
           <span className="text-sm font-semibold text-[#3c1e1e]">카카오로 시작하기</span>
         </button>
-        <button
-          type="button"
-          onClick={handleSocialLogin}
-          className="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-gray-600 bg-white"
-        >
-          <img src={googleIcon} alt="" className="size-6 object-contain p-1" />
-          <span className="text-sm font-semibold text-black">구글로 시작하기</span>
-        </button>
+        <div className="w-full overflow-hidden rounded-xl [&>div]:!w-full">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => setErrorMessage('로그인에 실패했어요. 다시 시도해 주세요.')}
+            shape="rectangular"
+            size="large"
+            text="continue_with"
+            width="360"
+          />
+        </div>
+        {errorMessage && <p className="text-caption1-r text-pink-500">{errorMessage}</p>}
       </div>
 
       <p className="mt-6 text-center text-caption2-r leading-normal text-gray-700">

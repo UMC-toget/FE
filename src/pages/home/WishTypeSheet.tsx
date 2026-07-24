@@ -41,11 +41,14 @@ export default function WishTypeSheet({ open, onClose, onSelect }: WishTypeSheet
                 className="flex w-full items-center justify-between py-3"
               >
                 <span className="text-b1-m text-black">{option.label}</span>
-                {picked === option.type && (
-                  <span className="flex size-6 items-center justify-center rounded-full bg-black text-white">
-                    <CheckIcon className="size-3.5" />
-                  </span>
-                )}
+                {/* 체크 표시 유무와 무관하게 항상 같은 자리를 차지해야 텍스트 위치가 흔들리지 않습니다 */}
+                <span
+                  className={`flex size-6 shrink-0 items-center justify-center rounded-full bg-black text-white ${
+                    picked === option.type ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <CheckIcon className="size-3.5" />
+                </span>
               </button>
             </li>
           ))}

@@ -289,29 +289,29 @@ export default function ReviewWritePage() {
         description={'지금 나가면, 작성 중인 내용이\n사라질 수 있어요'}
         cancelText="나가기"
         confirmText="이어서 작성하기"
-        onCancel={() => navigate(-1)}
+        onCancel={() => navigate('/home')}
         onConfirm={() => setShowExitModal(false)}
       />
 
+      {/* 피그마 "확대" 프레임: 카드가 페이지와 동일한 여백으로 전체 화면을 채우고, 닫기 버튼은 카드 바로 아래 중앙에 위치 */}
       {showExpandModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-black/30 px-6 pt-24"
-          onClick={() => setShowExpandModal(false)}
-        >
-          <div
-            className="relative w-full max-w-md rounded-3xl bg-white p-7 text-center shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative overflow-hidden rounded-2xl border border-black/5 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.12)]">
+        <div className="fixed inset-0 z-50 bg-black/40" onClick={() => setShowExpandModal(false)}>
+          <div className="mx-auto flex h-full w-full max-w-[402px] flex-col items-center px-[18px] pb-[34px] pt-16">
+            <div
+              className="relative w-full flex-1 overflow-hidden rounded-2xl border border-black/5 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.12)]"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div
-                className="pointer-events-none absolute inset-x-0 top-0 h-96"
+                className="pointer-events-none absolute inset-x-0 top-0 h-1/2"
                 style={{ background: `radial-gradient(circle at 50% 65%, ${accentHex} 0%, ${glowColor} 25%, transparent 65%)` }}
               />
               <ReviewSparkles />
-              <div className="flex flex-col items-center pt-6">
-                <TogetLogoMark accentHex={accentHex} isWhite={isWhite} className="relative z-0 mt-2 h-24" />
-                <img src={characterImage} alt="" className="relative z-10 -mt-9 h-52" />
-                <div className="mt-6 w-full rounded-2xl bg-white p-5 text-left shadow-sm">
+              <div className="flex h-full flex-col items-center justify-between pt-8 pb-6">
+                <div className="flex flex-col items-center">
+                  <TogetLogoMark accentHex={accentHex} isWhite={isWhite} className="relative z-0 h-24" />
+                  <img src={characterImage} alt="" className="relative z-10 -mt-9 h-52" />
+                </div>
+                <div className="w-[calc(100%-40px)] rounded-2xl bg-white p-5 text-left shadow-sm">
                   <p className={`text-h3-sb ${title ? 'text-black' : 'text-gray-400'}`}>{displayTitle}</p>
                   <p className={`mt-2 whitespace-pre-line text-b2-r ${content ? 'text-gray-600' : 'text-gray-400'}`}>
                     {displayContent}
@@ -329,7 +329,7 @@ export default function ReviewWritePage() {
               type="button"
               onClick={() => setShowExpandModal(false)}
               aria-label="닫기"
-              className="absolute -bottom-16 left-1/2 z-20 -translate-x-1/2 rounded-full bg-white p-2 text-gray-500 shadow-md"
+              className="mt-4 flex size-9 shrink-0 items-center justify-center rounded-full bg-white text-gray-500 shadow-md"
             >
               <CloseIcon className="size-4" />
             </button>

@@ -29,9 +29,11 @@ export default function SplashPage() {
     // 아직 반영되지 않아 재생이 막히는 경우가 있어, DOM에 직접 설정 후 play()를 호출합니다.
     video.muted = true
     video.play().catch(() => {
-      // 그래도 막히면 정적인 안전장치(SPLASH_FALLBACK_MS)로 로그인 화면 진입
+      // 기기/브라우저 설정(예: iOS "자동 재생 안 함")으로 재생 자체가 막히면
+      // 빈 화면에 재생 버튼만 뜬 채로 방치하지 않고 바로 다음 화면으로 넘어갑니다.
+      goToLogin()
     })
-  }, [])
+  }, [goToLogin])
 
   return (
     <div className="mx-auto flex h-svh w-full max-w-[402px] items-center justify-center overflow-hidden bg-white">

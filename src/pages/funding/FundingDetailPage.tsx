@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import type { FundingMessage } from '../../types/funding'
-import { formatDateKorean } from '../../utils/formatDate'
+import { formatDateKorean, getDdayLabel } from '../../utils/formatDate'
 import Header from '../../components/common/Header'
 import Button from '../../components/common/Button'
 import ConfirmModal from '../../components/common/ConfirmModal'
@@ -19,18 +19,6 @@ import ParticipantList from './ParticipantList'
 type OwnerTab = 'mine' | 'participants'
 
 const TOAST_DURATION_MS = 2500
-
-/** 기념일까지 남은 날을 D-7 / D-day / D+3 형식으로 변환. 날짜가 유효하지 않으면 빈 문자열 */
-function getDdayLabel(dateString: string): string {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const target = new Date(dateString)
-  target.setHours(0, 0, 0, 0)
-  const diff = Math.round((target.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
-  if (Number.isNaN(diff)) return ''
-  if (diff === 0) return 'D-day'
-  return diff > 0 ? `D-${diff}` : `D+${-diff}`
-}
 
 /**
  * E02) 내 선물 참여: 선물 페이지 (/funding/:id)

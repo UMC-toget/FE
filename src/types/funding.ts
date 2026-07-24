@@ -33,6 +33,17 @@ export interface FundingMessage {
   isAnonymous: boolean
 }
 
+/** 홈 화면 '진행 중인 내 선물 모으기' 카드용 요약 정보 (D04 공개 범위 토글과 무관 — 개설자 본인만 보는 카드) */
+export interface MyFundingSummary {
+  id: string
+  title: string
+  thumbnailImage: string
+  targetAmount: number
+  currentAmount: number
+  gaugePercent: number
+  anniversaryDate: string
+}
+
 export interface FundingDetail {
   id: string
   /** 펀딩 제목 (예: '희주의 25번째 생일') */
